@@ -80,11 +80,18 @@ public class TestBase {
     }
   }
 
-  protected void deleteSelectedItems() {
+  protected void deleteSelectedGroup() {
+    wd.findElement(By.xpath("//input[@name='delete']")).click();
+
+  }
+  protected void selectGroup() {
+    wd.findElement(By.name("selected[]")).click();
+  }
+  protected void deleteSelectedContact() {
     wd.findElement(By.xpath("//input[@value='Delete']")).click();
 
   }
-  protected void selectItem() {
+  protected void selectContact() {
     wd.findElement(By.name("selected[]")).click();
   }
 
