@@ -7,19 +7,18 @@ import java.util.concurrent.TimeUnit;
 
 import static net.bytebuddy.matcher.ElementMatchers.is;
 
-public class NavigationHelper {
-  private WebDriver wd;
+public class NavigationHelper extends HelperBase {
 
   public NavigationHelper(WebDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void goToGroupPage() {
-    wd.findElement(By.linkText("groups")).click();
+    click(By.linkText("groups"));
   }
 
   public void returnToHomePage() {
-    wd.findElement(By.linkText("home")).click();
+    click(By.linkText("home"));
   }
 
   public void waitForSuccessfulDeletionMessage() {

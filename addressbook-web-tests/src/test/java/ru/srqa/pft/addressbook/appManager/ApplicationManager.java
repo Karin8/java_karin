@@ -28,7 +28,7 @@ public class ApplicationManager {
   }
 
   public void stop() {
-    wd.findElement(By.linkText("Logout")).click();
+    sessionHelper.logout();
     wd.quit();
   }
 
@@ -37,15 +37,6 @@ public class ApplicationManager {
       wd.findElement(by);
       return true;
     } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  public boolean isAlertPresent() {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
       return false;
     }
   }
