@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
+import static net.bytebuddy.matcher.ElementMatchers.is;
+
 public class NavigationHelper {
   private WebDriver wd;
 
@@ -20,7 +22,7 @@ public class NavigationHelper {
     wd.findElement(By.linkText("home")).click();
   }
 
-  public void waitForTransferToHomepage() {
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  public void waitForSuccessfulDeletionMessage() {
+    wd.findElement(By.cssSelector(".msgbox"));
   }
 }
