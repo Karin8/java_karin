@@ -10,12 +10,14 @@ public class GroupHelper extends HelperBase {
     super(wd);
   }
 
-  public void returnToGroupPage() {
-    click(By.linkText("group page"));
+  public void submitGroupCreation() {
+
+    click(By.name("submit"));
   }
 
-  public void submitGroupCreation() {
-    click(By.name("submit"));
+  public void submitGroupEdit() {
+
+    click(By.name("update"));
   }
 
   public void fillGroupForm(GroupData groupData) {
@@ -35,5 +37,9 @@ public class GroupHelper extends HelperBase {
 
   public void selectGroup() {
     click(By.name("selected[]"));
+  }
+
+  public void initGroupEdit() {
+    click(By.xpath("(//input[@name='edit'])[2]"));
   }
 }
