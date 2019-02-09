@@ -17,11 +17,11 @@ public class NavigationHelper extends HelperBase {
     click(By.linkText("groups"));
   }
 
-  public void returnToHomePage() {
+  public void goToHomePage() {
     click(By.linkText("home"));
   }
 
-  public void waitForSuccessfulDeletionMessage() {
+  public void waitForSuccessMessage() {
     wd.findElement(By.cssSelector(".msgbox"));
   }
 }
