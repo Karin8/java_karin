@@ -1,69 +1,94 @@
 package ru.srqa.pft.addressbook;
 
-import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
-import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class ContactCreationTests {
-  private WebDriver driver;
-  private String baseUrl;
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
+  private WebDriver wb;
 
-  @BeforeClass(alwaysRun = true)
+  @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
-    driver = new FirefoxDriver();
-    baseUrl = "https://www.katalon.com/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    wb = new FirefoxDriver();
+    wb.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    wb.get("http://localhost/addressbook/");
+    login();
+  }
+
+  private void login() {
+    wb.findElement(By.name("user")).click();
+    wb.findElement(By.name("user")).clear();
+    wb.findElement(By.name("user")).sendKeys("admin");
+    wb.findElement(By.name("pass")).click();
+    wb.findElement(By.name("pass")).clear();
+    wb.findElement(By.name("pass")).sendKeys("secret");
+    wb.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
   }
 
   @Test
-  public void testContactCreationTests() throws Exception {
-    driver.get("http://localhost/addressbook/");
-    driver.findElement(By.name("user")).click();
-    driver.findElement(By.name("user")).clear();
-    driver.findElement(By.name("user")).sendKeys("admin");
-    driver.findElement(By.name("pass")).click();
-    driver.findElement(By.name("pass")).clear();
-    driver.findElement(By.name("pass")).sendKeys("secret");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
-    driver.findElement(By.linkText("add new")).click();
-    driver.findElement(By.name("firstname")).click();
-    driver.findElement(By.name("firstname")).clear();
-    driver.findElement(By.name("firstname")).sendKeys("Karina");
-    driver.findElement(By.name("lastname")).click();
-    driver.findElement(By.name("lastname")).clear();
-    driver.findElement(By.name("lastname")).sendKeys("Kuznetsova");
-    driver.findElement(By.name("address")).click();
-    driver.findElement(By.name("address")).clear();
-    driver.findElement(By.name("address")).sendKeys("Saint-Petersburg");
-    driver.findElement(By.name("mobile")).click();
-    driver.findElement(By.name("mobile")).clear();
-    driver.findElement(By.name("mobile")).sendKeys("80001112233");
-    driver.findElement(By.name("email")).click();
-    driver.findElement(By.name("email")).clear();
-    driver.findElement(By.name("email")).sendKeys("email@email.com");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
-    driver.findElement(By.linkText("home")).click();
-    driver.findElement(By.linkText("Logout")).click();
+  public void testContactCreation() throws Exception {
+    initContactCreation();
+    fillFirstname();
+    fillLastname();
+    fillAddress();
+    fillMobilePhone();
+    fillEmail();
+    submitContactCreation();
+    returnToHomePage();
   }
 
-  @AfterClass(alwaysRun = true)
+  private void returnToHomePage() {
+    wb.findElement(By.linkText("home")).click();
+  }
+
+  private void submitContactCreation() {
+    wb.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
+  }
+
+  private void fillEmail() {
+    wb.findElement(By.name("email")).click();
+    wb.findElement(By.name("email")).clear();
+    wb.findElement(By.name("email")).sendKeys("email@email.com");
+  }
+
+  private void fillMobilePhone() {
+    wb.findElement(By.name("mobile")).click();
+    wb.findElement(By.name("mobile")).clear();
+    wb.findElement(By.name("mobile")).sendKeys("80001112233");
+  }
+
+  private void fillAddress() {
+    wb.findElement(By.name("address")).click();
+    wb.findElement(By.name("address")).clear();
+    wb.findElement(By.name("address")).sendKeys("Saint-Petersburg");
+  }
+
+  private void fillLastname() {
+    wb.findElement(By.name("lastname")).click();
+    wb.findElement(By.name("lastname")).clear();
+    wb.findElement(By.name("lastname")).sendKeys("Kuznetsova");
+  }
+
+  private void fillFirstname() {
+    wb.findElement(By.name("firstname")).click();
+    wb.findElement(By.name("firstname")).clear();
+    wb.findElement(By.name("firstname")).sendKeys("Karina");
+  }
+
+  private void initContactCreation() {
+    wb.findElement(By.linkText("add new")).click();
+  }
+
+  @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
-    driver.quit();
-    String verificationErrorString = verificationErrors.toString();
-    if (!"".equals(verificationErrorString)) {
-      fail(verificationErrorString);
-    }
+    wb.findElement(By.linkText("Logout")).click();
+    wb.quit();
   }
 
   private boolean isElementPresent(By by) {
     try {
-      driver.findElement(by);
+      wb.findElement(by);
       return true;
     } catch (NoSuchElementException e) {
       return false;
@@ -72,25 +97,10 @@ public class ContactCreationTests {
 
   private boolean isAlertPresent() {
     try {
-      driver.switchTo().alert();
+      wb.switchTo().alert();
       return true;
     } catch (NoAlertPresentException e) {
       return false;
-    }
-  }
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
     }
   }
 }
