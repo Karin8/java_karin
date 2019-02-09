@@ -29,13 +29,27 @@ public class ContactCreationTests {
   @Test
   public void testContactCreation() throws Exception {
     initContactCreation();
-    fillFirstname();
-    fillLastname();
-    fillAddress();
-    fillMobilePhone();
-    fillEmail();
+    fillContactForm();
     submitContactCreation();
     returnToHomePage();
+  }
+
+  private void fillContactForm() {
+    wb.findElement(By.name("firstname")).click();
+    wb.findElement(By.name("firstname")).clear();
+    wb.findElement(By.name("firstname")).sendKeys("Karina");
+    wb.findElement(By.name("lastname")).click();
+    wb.findElement(By.name("lastname")).clear();
+    wb.findElement(By.name("lastname")).sendKeys("Kuznetsova");
+    wb.findElement(By.name("address")).click();
+    wb.findElement(By.name("address")).clear();
+    wb.findElement(By.name("address")).sendKeys("Saint-Petersburg");
+    wb.findElement(By.name("mobile")).click();
+    wb.findElement(By.name("mobile")).clear();
+    wb.findElement(By.name("mobile")).sendKeys("80001112233");
+    wb.findElement(By.name("email")).click();
+    wb.findElement(By.name("email")).clear();
+    wb.findElement(By.name("email")).sendKeys("email@email.com");
   }
 
   private void returnToHomePage() {
@@ -44,36 +58,6 @@ public class ContactCreationTests {
 
   private void submitContactCreation() {
     wb.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
-  }
-
-  private void fillEmail() {
-    wb.findElement(By.name("email")).click();
-    wb.findElement(By.name("email")).clear();
-    wb.findElement(By.name("email")).sendKeys("email@email.com");
-  }
-
-  private void fillMobilePhone() {
-    wb.findElement(By.name("mobile")).click();
-    wb.findElement(By.name("mobile")).clear();
-    wb.findElement(By.name("mobile")).sendKeys("80001112233");
-  }
-
-  private void fillAddress() {
-    wb.findElement(By.name("address")).click();
-    wb.findElement(By.name("address")).clear();
-    wb.findElement(By.name("address")).sendKeys("Saint-Petersburg");
-  }
-
-  private void fillLastname() {
-    wb.findElement(By.name("lastname")).click();
-    wb.findElement(By.name("lastname")).clear();
-    wb.findElement(By.name("lastname")).sendKeys("Kuznetsova");
-  }
-
-  private void fillFirstname() {
-    wb.findElement(By.name("firstname")).click();
-    wb.findElement(By.name("firstname")).clear();
-    wb.findElement(By.name("firstname")).sendKeys("Karina");
   }
 
   private void initContactCreation() {
