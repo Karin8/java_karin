@@ -62,8 +62,20 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    initContactEdit(index);
+    fillContactForm(contact);
+    submitContactEdit();
+    waitForSuccessMessage();
+    returnToHomePage();
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void waitForSuccessMessage() {
+    wd.findElement(By.cssSelector(".msgbox"));
   }
 
   public int getContactCount() {

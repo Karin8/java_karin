@@ -30,7 +30,4 @@ public class NavigationHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-  public void waitForSuccessMessage() {
-    wd.findElement(By.cssSelector(".msgbox"));
-  }
 }

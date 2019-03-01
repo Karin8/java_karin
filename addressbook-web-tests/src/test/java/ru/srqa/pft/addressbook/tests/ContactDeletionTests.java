@@ -8,18 +8,22 @@ import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
-  @Test
-  public void testContactDeletionFromHomePage() throws Exception {
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.getNavigationHelper().goToHomePage();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Karina", "Kuznetsova", "Saint-Petersburg", "80001112233", "email@email.com"));
     }
+  }
+
+  @Test
+  public void testContactDeletionFromHomePage() throws Exception {
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().deleteSelectedContact();
     app.getContactHelper().confirmContactDeletion();
-    app.getNavigationHelper().waitForSuccessMessage();
-    app.getNavigationHelper().goToHomePage();
+    app.getContactHelper().waitForSuccessMessage();
+    app.getContactHelper().returnToHomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1);
 
@@ -29,15 +33,11 @@ public class ContactDeletionTests extends TestBase {
 
   @Test
   public void testContactDeletionFromEditPage() throws Exception {
-    app.getNavigationHelper().goToHomePage();
-    if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Karina", "Kuznetsova", "Saint-Petersburg", "80001112233", "email@email.com"));
-    }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().initContactEdit(before.size() - 1);
     app.getContactHelper().deleteSelectedContact();
-    app.getNavigationHelper().waitForSuccessMessage();
-    app.getNavigationHelper().goToHomePage();
+    app.getContactHelper().waitForSuccessMessage();
+    app.getContactHelper().returnToHomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1);
 
