@@ -4,7 +4,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.srqa.pft.addressbook.model.ContactData;
 import ru.srqa.pft.addressbook.model.Contacts;
-import ru.srqa.pft.addressbook.model.GroupData;
 
 import java.io.*;
 import java.util.ArrayList;
