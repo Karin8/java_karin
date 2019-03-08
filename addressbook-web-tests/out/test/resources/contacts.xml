@@ -1,6 +1,5 @@
 <list>
   <contact>
-    <id>2147483647</id>
     <firstname>firstname 0</firstname>
     <lastname>lastname 0</lastname>
     <address>address 0</address>
@@ -8,7 +7,6 @@
     <email1>email 0</email1>
   </contact>
   <contact>
-    <id>2147483647</id>
     <firstname>firstname 1</firstname>
     <lastname>lastname 1</lastname>
     <address>address 1</address>
@@ -16,7 +14,6 @@
     <email1>email 1</email1>
   </contact>
   <contact>
-    <id>2147483647</id>
     <firstname>firstname 2</firstname>
     <lastname>lastname 2</lastname>
     <address>address 2</address>
