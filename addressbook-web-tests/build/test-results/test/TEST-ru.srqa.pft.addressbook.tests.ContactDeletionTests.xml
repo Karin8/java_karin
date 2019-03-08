@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.srqa.pft.addressbook.tests.ContactDeletionTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-08T13:33:22" hostname="Карин-ПК" time="5.179">
+  <properties/>
+  <testcase name="testContactDeletionFromEditPage" classname="ru.srqa.pft.addressbook.tests.ContactDeletionTests" time="2.835"/>
+  <testcase name="testContactDeletionFromHomePage" classname="ru.srqa.pft.addressbook.tests.ContactDeletionTests" time="2.304"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
