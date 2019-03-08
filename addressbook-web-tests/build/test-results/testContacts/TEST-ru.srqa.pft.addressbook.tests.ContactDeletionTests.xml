@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.srqa.pft.addressbook.tests.ContactDeletionTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-08T13:38:31" hostname="Карин-ПК" time="6.108">
+<testsuite name="ru.srqa.pft.addressbook.tests.ContactDeletionTests" tests="2" skipped="2" failures="0" errors="0" timestamp="2019-03-08T14:50:03" hostname="Карин-ПК" time="0.0">
   <properties/>
-  <testcase name="testContactDeletionFromEditPage" classname="ru.srqa.pft.addressbook.tests.ContactDeletionTests" time="3.281"/>
-  <testcase name="testContactDeletionFromHomePage" classname="ru.srqa.pft.addressbook.tests.ContactDeletionTests" time="2.797"/>
+  <testcase name="testContactDeletionFromEditPage" classname="ru.srqa.pft.addressbook.tests.ContactDeletionTests" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testContactDeletionFromHomePage" classname="ru.srqa.pft.addressbook.tests.ContactDeletionTests" time="0.0">
+    <skipped/>
+  </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

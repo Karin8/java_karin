@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.srqa.pft.addressbook.tests.ContactEditTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-03-08T13:38:37" hostname="Карин-ПК" time="6.367">
+<testsuite name="ru.srqa.pft.addressbook.tests.ContactEditTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2019-03-08T14:50:03" hostname="Карин-ПК" time="0.0">
   <properties/>
-  <testcase name="testContactEdit" classname="ru.srqa.pft.addressbook.tests.ContactEditTests" time="6.367"/>
+  <testcase name="testContactEdit" classname="ru.srqa.pft.addressbook.tests.ContactEditTests" time="0.0">
+    <skipped/>
+  </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
