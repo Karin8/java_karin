@@ -40,7 +40,7 @@ public class ContactDataGenerator {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withFirstname(String.format("firstname %s", i))
-              .withLastname(String.format("lastname %s", i)).withEmail1(String.format("email %s", i)));
+              .withLastname(String.format("lastname %s", i)).withAddress(String.format("address %s", i)).withEmail1(String.format("email %s", i)).withHomePhone(String.format("home phone %s", i)));
     }
     return contacts;
   }
@@ -49,7 +49,7 @@ public class ContactDataGenerator {
     System.out.println(new File(".").getAbsoluteFile());
     Writer writer = new FileWriter(file);
     for (ContactData contact : contacts) {
-      writer.write(String.format("%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getEmail1()));
+      writer.write(String.format("%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getAddress(), contact.getEmail1(), contact.getHomePhone()));
     }
     writer.close();
   }
