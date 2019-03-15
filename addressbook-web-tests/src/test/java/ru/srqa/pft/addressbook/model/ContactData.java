@@ -3,21 +3,38 @@ package ru.srqa.pft.addressbook.model;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.File;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
+  @Column(name = "firstname")
   private String firstname;
+  @Column(name = "lastname")
   private String lastname;
+  @Column(name = "address")
   private String address;
+  @Column(name = "mobile")
   private String mobilePhone;
+  @Column(name = "home")
   private String homePhone;
+  @Column(name = "work")
   private String workPhone;
   private String allPhones;
+  @Column(name = "email")
   private String email1;
+  @Column(name = "email2")
   private String email2;
+  @Column(name = "email3")
   private String email3;
   private String allEmails;
   private File photo;
