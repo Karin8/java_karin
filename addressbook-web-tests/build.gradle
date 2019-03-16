@@ -37,4 +37,7 @@ task testContacts (type: Test) {
     if (project.hasProperty('targer'))  {
         systemProperty 'targer', "${targer}"
     }
+    if (project.hasProperty('verifyUi'))  {
+        systemProperty 'verifyUi', "${targer}"
+    }
 }
