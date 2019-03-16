@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class DbConnectionTests {
 
-  @Test
+  @Test (enabled = false)
   public void testDbConnection() {
     Connection conn = null;
     try {
