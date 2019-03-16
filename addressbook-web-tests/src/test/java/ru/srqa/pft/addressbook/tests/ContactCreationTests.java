@@ -8,6 +8,7 @@ import ru.srqa.pft.addressbook.model.Contacts;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,8 +29,8 @@ public class ContactCreationTests extends TestBase {
       }
       XStream xstream = new XStream();
       xstream.processAnnotations(ContactData.class);
-      List<ContactData> contacts = (List<ContactData>)xstream.fromXML(xml);
-      return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
+      List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
+      return contacts.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
     }
   }
 
@@ -45,7 +46,7 @@ public class ContactCreationTests extends TestBase {
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 
-  @Test (enabled = false)
+  @Test(enabled = false)
   public void testBadContactCreation() throws Exception {
     app.goTo().homePage();
     Contacts before = app.db().contacts();
@@ -56,5 +57,4 @@ public class ContactCreationTests extends TestBase {
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before));
   }
-
 }
