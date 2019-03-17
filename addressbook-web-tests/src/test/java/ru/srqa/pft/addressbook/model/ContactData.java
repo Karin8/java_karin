@@ -222,4 +222,9 @@ public class ContactData {
     groups.add(group);
     return this;
   }
+
+  private Object readResolve() {
+    groups = new HashSet<GroupData>();
+    return this;
+  }
 }
