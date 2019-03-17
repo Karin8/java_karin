@@ -1,10 +1,13 @@
 package ru.srqa.pft.addressbook.tests;
 
 import com.thoughtworks.xstream.XStream;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.srqa.pft.addressbook.model.ContactData;
 import ru.srqa.pft.addressbook.model.Contacts;
+import ru.srqa.pft.addressbook.model.GroupData;
+import ru.srqa.pft.addressbook.model.Groups;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -34,12 +37,21 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
+  @BeforeMethod
+  public void ensurePreconditions() {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
+    }
+  }
+
   @Test(dataProvider = "validContacts")
   public void testContactCreation(ContactData contact) {
     app.goTo().homePage();
+    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/stesting.png");
-    app.contact().create(contact);
+    app.contact().create(contact.inGroup(groups.iterator().next()));
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
