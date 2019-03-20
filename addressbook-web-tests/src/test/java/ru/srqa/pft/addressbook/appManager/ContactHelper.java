@@ -150,12 +150,16 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  private void selectGroupListById(int id) {
+  public void selectGroupListById(int id) {
     click(By.cssSelector("select[name=\"group\"] > option[value='" + id + "']"));
   }
 
+  public void goBackToAll() {
+    click(By.cssSelector("select[name=\"group\"] > option[value='']"));
+  }
 
-  private void initContactRemovingFromGroup() {
+
+  public void initContactRemovingFromGroup() {
     click(By.name("remove"));
   }
 

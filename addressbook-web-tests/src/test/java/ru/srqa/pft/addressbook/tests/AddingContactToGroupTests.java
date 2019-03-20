@@ -23,6 +23,10 @@ public class AddingContactToGroupTests extends TestBase {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
     }
+    if (app.db().contacts().iterator().next().getGroups().size() == app.db().groups().size()) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
+    }
   }
 
   @Test

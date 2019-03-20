@@ -25,6 +25,13 @@ public class RemovingContactFromGroupTests extends TestBase {
       app.contact().create(new ContactData()
               .withFirstname("Karina").withLastname("Kuznetsova").withAddress("Saint-Petersburg").withHomePhone("111").withMobilePhone("222").withWorkPhone("333").withEmail1("email@email.com").inGroup(groups.iterator().next()));
     }
+    if (app.db().groups().iterator().next().getContacts().size() == 0) {
+      Groups groupList = app.db().groups();
+      GroupData toGroup = groupList.iterator().next();
+      Contacts contactsBefore = app.db().contacts();
+      ContactData selectedContact = contactsBefore.iterator().next();
+      app.contact().addContactToGroup(selectedContact, toGroup);
+    }
   }
 
   @Test
@@ -37,6 +44,7 @@ public class RemovingContactFromGroupTests extends TestBase {
     app.contact().removeContactFromGroup(selectedContact, fromGroup);
     Contacts contactsAfter = app.db().contacts();
     assertThat(contactsAfter, equalTo(contactsBefore));
+    app.contact().goBackToAll();
     verifyContactListInUi();
   }
 }
