@@ -38,7 +38,7 @@ public class AddingContactToGroupTests extends TestBase {
     GroupData toGroup = groupList.iterator().next();
     app.contact().addContactToGroup(selectedContact, toGroup);
     Contacts contactsAfter = app.db().contacts();
-    assertThat(contactsAfter, equalTo(contactsBefore));
+    assertThat(contactsAfter.iterator().next().getGroups(), equalTo(contactsBefore.iterator().next().getGroups().withAdded(toGroup)));
     verifyContactListInUi();
   }
 

@@ -28,8 +28,8 @@ public class RemovingContactFromGroupTests extends TestBase {
     if (app.db().groups().iterator().next().getContacts().size() == 0) {
       Groups groupList = app.db().groups();
       GroupData toGroup = groupList.iterator().next();
-      Contacts contactsBefore = app.db().contacts();
-      ContactData selectedContact = contactsBefore.iterator().next();
+      Contacts contacts = app.db().contacts();
+      ContactData selectedContact = contacts.iterator().next();
       app.contact().addContactToGroup(selectedContact, toGroup);
     }
   }
@@ -43,7 +43,7 @@ public class RemovingContactFromGroupTests extends TestBase {
     GroupData fromGroup = groupList.iterator().next();
     app.contact().removeContactFromGroup(selectedContact, fromGroup);
     Contacts contactsAfter = app.db().contacts();
-    assertThat(contactsAfter, equalTo(contactsBefore));
+    assertThat(contactsAfter.iterator().next().getGroups(), equalTo(contactsBefore.iterator().next().getGroups().without(fromGroup)));
     app.contact().goBackToAll();
     verifyContactListInUi();
   }
