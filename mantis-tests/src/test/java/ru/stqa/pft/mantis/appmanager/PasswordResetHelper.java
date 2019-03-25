@@ -7,6 +7,9 @@ import java.util.List;
 
 public class PasswordResetHelper extends HelperBase {
 
+  private String user;
+  private String username;
+
   public PasswordResetHelper(ApplicationManager app) {
     super(app);
   }
@@ -20,14 +23,10 @@ public class PasswordResetHelper extends HelperBase {
     wd.findElement(By.linkText("Manage Users")).click();
   }
 
-  public void chooseUser(){
-
-    WebElement webElement = wd.findElement(By.cssSelector("a[href*='manage_user_edit_page.php']:not([href='manage_user_edit_page.php?user_id=1']"));
-    //WebElement webElement = wd.findElement(By.cssSelector("a[href='manage_user_edit_page.php?user_id=2']"));
-    webElement.click();
-  }
-  public void resetPassword(){
-    wd.findElement(By.cssSelector("input[value='Reset Password']")).click();
+  public void resetPassword(String user) {
+    this.username = user;
+    click(By.linkText(username));
+    click(By.cssSelector("input[value='Reset Password']"));
   }
 
   public String getUserName(){

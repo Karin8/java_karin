@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.appmanager.HttpSession;
 import ru.stqa.pft.mantis.model.MailMessage;
+import ru.stqa.pft.mantis.model.UserData;
+import ru.stqa.pft.mantis.model.Users;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -22,21 +24,23 @@ public class PasswordResetTests extends TestBase {
 
   @Test
   public void testChangePassword() throws IOException, MessagingException {
-    HttpSession session = app.newSession();
-    String newPassword = "newpassword";
+    app.getDriver();
     app.session().login("administrator", "root");
+    Users listOfUsers  = app.db().users();
+    UserData selectedUser = listOfUsers.iterator().next();
+    String user = selectedUser.getUsername();
+    String email = selectedUser.getEmail();
     app.resetHelper().goToManagePage();
     app.resetHelper().goToManageUsersPage();
-    app.resetHelper().chooseUser();
-    String user = app.resetHelper().getUserName();
-    String email = app.resetHelper().getMail();
-    app.resetHelper().resetPassword();
+    app.resetHelper().resetPassword(user);
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 20000);
     String resetPasswordLink = findResetPasswordLink(mailMessages, email);
-
+    String newPassword = "newpassword";
     app.resetHelper().changePasswordFinish(resetPasswordLink, newPassword);
+
+    HttpSession session = app.newSession();
     assertTrue(session.login(user, newPassword));
-    assertTrue(session.isLoggedInAsUser(user));
+    assertTrue(session.isLoggedInAs(user));
   }
 
   private String findResetPasswordLink(List<MailMessage> mailMessages, String email) {
