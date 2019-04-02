@@ -25,7 +25,7 @@ public class TestBase {
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
     JsonElement issue = issues.getAsJsonArray().get(0);
-    JsonElement state = issue.getAsJsonObject().get("state");
+    String state = issue.getAsJsonObject().get("state_name").toString();
     return new Gson().fromJson(state, new TypeToken<String>() {
     }.getType());
   }
